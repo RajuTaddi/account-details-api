@@ -7,6 +7,7 @@ using account.details.core.services;
 using account.details.infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace account.details.api.Controllers
 {
@@ -15,10 +16,12 @@ namespace account.details.api.Controllers
     public class AccountsController : ControllerBase
     {
         private readonly IAccountService _service;
+        private readonly ILogger<AccountsController> _logger;
 
-        public AccountsController(IAccountService service)
+        public AccountsController(IAccountService service, ILogger<AccountsController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         // GET api/values
@@ -26,6 +29,7 @@ namespace account.details.api.Controllers
         public async Task<IActionResult> Get()
         {
             var response = await _service.GetAccounts();
+            _logger.LogInformation("GetAccounnts: Suucess");
             return Ok(response);
         }
 
@@ -34,6 +38,7 @@ namespace account.details.api.Controllers
         public async Task<ActionResult> Get(string accountNumber)
         {
             var response = await _service.GetAccountById(accountNumber);
+            _logger.LogInformation("GetAccountById: Suucess");
             return Ok(response);
         }
     }

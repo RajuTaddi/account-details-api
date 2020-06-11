@@ -1,4 +1,5 @@
-﻿using account.details.core.interfaces;
+﻿using account.details.common.exceptions;
+using account.details.core.interfaces;
 using account.details.infrastructure.interfaces;
 using account.details.infrastructure.models;
 using account.details.infrastructure.repositories;
@@ -25,7 +26,11 @@ namespace account.details.core.services
 
         public async Task<Account> GetAccountById(string accountNumber)
         {
-            return await _repository.GetById(accountNumber);
+            var account = await _repository.GetById(accountNumber);
+            if (account == null)
+                throw new DataNotFoundException($"{accountNumber} is not found");
+
+            return account;
         }
     }
 }

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.11" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\account.details.common\account.details.common.csproj" />
     <ProjectReference Include="..\account.details.infrastructure\account.details.infrastructure.csproj" />
   </ItemGroup>
