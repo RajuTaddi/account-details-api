@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using account.details.api.middlewares;
 using account.details.core.interfaces;
 using account.details.core.services;
 using account.details.infrastructure;
@@ -75,6 +76,8 @@ namespace account.details.api
             {
                 app.UseHsts();
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             var context = app.ApplicationServices.GetService<GlobalDbContext>();
             TestData.LoadTestData(context);
