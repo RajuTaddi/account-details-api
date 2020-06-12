@@ -23,7 +23,7 @@ namespace account.details.api
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Execution has stopped because of ecception");
+                logger.Error(ex, "Execution has stopped because of exception");
                 throw;
             }
             finally
